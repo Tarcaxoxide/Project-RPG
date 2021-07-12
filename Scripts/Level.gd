@@ -46,3 +46,9 @@ func P_process(delta,Data:Dictionary):
 		$Selection.zelected=false
 		Data["Triggers"]["Switch Scene"]=true
 
+func _NewOption(Display:String,P:String,Selec):
+	var nOption = TemplateOption.duplicate(true)
+	nOption["Display"]=Display
+	nOption["Path"]=P
+	nOption["Ref"]=Selec
+	return nOption
