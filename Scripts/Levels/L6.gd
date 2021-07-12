@@ -6,7 +6,6 @@ func _ready():
 	Data["Level"]["Current Scene"]="L6"
 	Data["Level"]["Options"].append(_NewOption("Continue","res://Scenes/Levels/L7.tscn",$Selection))
 	_prep_ready(Data)
-	$Selection.visible=true
 
 func _process(delta):
 	P_process(delta,Data)

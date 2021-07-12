@@ -37,6 +37,7 @@ func _Add_Option(Option):
 func _prep_ready(Data:Dictionary):
 	for Option in Data["Level"]["Options"]:
 		_Add_Option(Option)
+	Data["Level"]["Options"].front()["Ref"].visible=true
 
 func P_process(delta,Data:Dictionary):
 	if($Selection.zelected):
