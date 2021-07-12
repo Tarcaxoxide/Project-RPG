@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Selection.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Levels/L7.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Levels/L8.gd" type="Script" id=2]
 
-[node name="L7" type="VBoxContainer"]
+[node name="L8" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -17,7 +17,7 @@ margin_right = 1024.0
 margin_bottom = 298.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Emboldened, you tear at it, and your world floods with light..."
+text = "You are in a vast, richly decorated chamber."
 __meta__ = {
 "_edit_use_anchors_": false
 }
