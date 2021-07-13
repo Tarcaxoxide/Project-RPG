@@ -18,9 +18,6 @@ var Data = {
 
 var xcount:int = 0
 
-func LevelDir(Level:int):
-	return "res://Scenes/Levels/L"+str(Level)+".tscn"
-
 func ClearLevel():
 	if (Data["World"]["Current_Stage"] != null):
 		Data["World"]["Current_Stage"].queue_free()
@@ -34,7 +31,7 @@ func LoadLevel(Dir:String):
 	
 
 func _ready():
-	LoadLevel("res://Scenes/Levels/L0.tscn")
+	LoadLevel("res://Scenes/Levels/_0000000000_0000000000_0000000000.tscn")
 
 func _process(delta):
 	var termpercent:float=float($Terminal.ShowCounter/100)*float(get_viewport().size.y)
