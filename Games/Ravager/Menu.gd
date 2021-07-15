@@ -9,7 +9,7 @@ func _on_Continue_btn_pressed():
 
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://Games/Ravager/Scenes/Stage.tscn");
+	get_tree().change_scene("res://Games/Ravager/Stage.tscn");
 
 
 func _process(delta):
