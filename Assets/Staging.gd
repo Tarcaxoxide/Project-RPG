@@ -5,12 +5,15 @@ var Stage_Data = {
 	"Stats":[]
 }
 
+export var LevelPath:String
+
 func ClearLevel():
 	if (Stage_Data["Current_Stage"] != null):
 		Stage_Data["Current_Stage"].queue_free()
 		Stage_Data["Current_Stage"]=null
 
 func LoadLevel(Dir:String):
+	print("Load:"+Dir)
 	ClearLevel()
 	var newLevel= load(Dir)
 	Stage_Data["Current_Stage"]=newLevel.instance()
@@ -56,17 +59,17 @@ func P_process(delta,Terminal):
 		match Terminal.CValue:
 			"Load":
 				print(Terminal.RValue)
-				var scene="res://Games/Ravager/Scenes/Levels/"+Terminal.RValue.front().to_upper()+".tscn"
+				var scene=LevelPath+Terminal.RValue.front().to_upper()+".tscn"
 				LoadLevel(scene)
 				Terminal.RValue.clear()
-				Terminal.RValue.append("load:"+"res://Games/Ravager/Scenes/Levels/"+scene)
+				Terminal.RValue.append("load:"+LevelPath+scene)
 				Terminal.ReturnDone=true
 			"Reload":
-				LoadLevel("res://Games/Ravager/Scenes/Levels/"+Stage_Data["Current_Stage"].Data["Level"]["Current Scene"]+".tscn")
-				Terminal.RValue.append("reload:"+"res://Games/Ravager/Scenes/Levels/"+Stage_Data["Current_Stage"].Data["Level"]["Current Scene"]+".tscn")
+				LoadLevel(LevelPath+Stage_Data["Current_Stage"].Data["Level"]["Current Scene"]+".tscn")
+				Terminal.RValue.append("reload:"+LevelPath+Stage_Data["Current_Stage"].Data["Level"]["Current Scene"]+".tscn")
 				Terminal.ReturnDone=true
 			"Exit":
-				get_tree().change_scene("res://Games/Ravager/Scenes/Menu.tscn")
+				get_tree().change_scene(LevelPath+"/Menu.tscn")
 				Terminal.ReturnDone=true
 			"GetStage":
 				Terminal.RValue.append(Stage_Data["Current_Stage"].Data["Level"]["Current Scene"])

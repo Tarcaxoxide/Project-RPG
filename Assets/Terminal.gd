@@ -9,6 +9,7 @@ var ShowSpeed:int =50
 export var RValue:Array=[]
 export var CValue:String=""
 export var ReturnDone:bool=false
+export var LevelPath:String
 
 func _process(delta):
 	if(ReturnDone):
@@ -89,9 +90,10 @@ func list_files_in_directory(path):
 
 var levelsList:Array=[]
 
-func _ready():
-	for file in list_files_in_directory("res://Games/Ravager/Scenes/Levels/"):
-		levelsList.append(file.replace(".tscn",""))
+func loadLevels():
+	for file in list_files_in_directory(LevelPath):
+		if(file.split(".")[1] != ".gd"):
+			levelsList.append(file.split(".")[0])
 
 var loading:bool=false
 func cmd(command:String):

@@ -11,12 +11,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Dialog_Output" type="RichTextLabel" parent="."]
 margin_right = 1024.0
 margin_bottom = 298.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Darkness."
+text = "{Placeholder text}"
 __meta__ = {
 "_edit_use_anchors_": false
 }
