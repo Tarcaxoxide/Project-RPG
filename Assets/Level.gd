@@ -1,7 +1,6 @@
-extends Control
+extends "res://Assets/Staging.gd"
 
 export var ErrorMessage:String=""
-
 
 # (State:1=move back a level,State:2=do nothing,State:3=move forward a level,State:0=exit)
 

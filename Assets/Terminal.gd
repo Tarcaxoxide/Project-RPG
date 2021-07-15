@@ -44,7 +44,7 @@ var commandlist:Array=[
 						"clear",
 						"get stage",
 						"get level",
-						"get character",
+						"get stats",
 						"reload",
 						"load",
 						"exit"
@@ -54,7 +54,7 @@ var commandlistNames:Array=[
 						"clear         ",
 						"get stage     ",
 						"get level     ",
-						"get character ",
+						"get stats     ",
 						"reload        ",
 						"load          ",
 						"exit          "
@@ -64,7 +64,7 @@ var commandlistDescriptions:Array=[
 						"clears the terminal screen.",
 						"gets the value of the current loaded scene.",
 						"gets the value of the current loaded scene.",
-						"gets the character's stats",
+						"gets the stats",
 						"reloads the current scene",
 						"loads target scene",
 						"exits the game"
@@ -136,8 +136,8 @@ func cmd(command:String):
 					CValue="GetStage"
 				"level":
 					CValue="GetStage"
-				"character":
-					CValue="GetCharacter"
+				"stats":
+					CValue="GetStats"
 				_:
 					AddOutput("Uknown:"+cmdargs[1])
 		_:
