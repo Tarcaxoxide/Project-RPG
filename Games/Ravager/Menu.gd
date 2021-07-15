@@ -1,6 +1,5 @@
 extends Control
 
-
 func _on_OlderThan18_pressed():
 	$Panel/Panel/Continue_btn.disabled=!$Panel/Panel/OlderThan18.pressed
 
@@ -28,10 +27,5 @@ func _process(delta):
 				$Terminal.ReturnDone=true
 			"GetCharacter":
 				$Terminal.RValue.append("Player Character Status:")
-				$Terminal.RValue.append("       Health:"+"Not Available")
-				$Terminal.RValue.append("       Strength:"+"Not Available")
-				$Terminal.RValue.append("       Charm:"+"Not Available")
-				$Terminal.RValue.append("       Potency:"+"Not Available")
-				$Terminal.RValue.append("       Cruelty:"+"Not Available")
-				$Terminal.RValue.append("       Mercy:"+"Not Available")
+				$Terminal.RValue.append("       "+"Not Available!")
 				$Terminal.ReturnDone=true
