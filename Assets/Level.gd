@@ -1,4 +1,5 @@
-extends "res://Assets/Staging.gd"
+#extends "res://Assets/Staging.gd"
+extends Control
 
 export var ErrorMessage:String=""
 
@@ -13,7 +14,9 @@ var TemplateOption={
 
 var TemplateData = {
 	"Triggers":{
-		"Switch Scene":false
+		"Switch Scene":false,
+		"Set value":false,
+		"Get value":false
 	},
 	"Level":{
 		"Current Scene":"",
@@ -22,6 +25,8 @@ var TemplateData = {
 		"SelectionRef":null
 	}
 }
+
+export var Exchanger:Dictionary={"Name":"","Value":null}
 
 #export var Options:Array
 #export var OptionsE:Array
@@ -40,9 +45,17 @@ func _prep_ready(Data:Dictionary):
 
 func P_process(delta,Data:Dictionary):
 	if($Selection.zelected):
-		for nScene in Data["Level"]["Options"]:
-			if(nScene["Display"] == $Selection.zelection):
-				Data["Level"]["Next Scene"]=nScene["Path"]
+		var cmdargs:Array=$Selection.zelection.split(":")
+		if(cmdargs[0] != "{Text}"):
+			for nScene in Data["Level"]["Options"]:
+				if(nScene["Display"] == $Selection.zelection):
+					Data["Level"]["Next Scene"]=nScene["Path"]
+		else:
+			Set_Stat_Value("PlayerName",$Selection.zelection_text,Data)
+			$Selection.zelection=cmdargs[1]
+			for nScene in Data["Level"]["Options"]:
+				if(nScene["Display"] == $Selection.zelection):
+					Data["Level"]["Next Scene"]=nScene["Path"]
 		$Selection.zelected=false
 		Data["Triggers"]["Switch Scene"]=true
 
@@ -52,3 +65,16 @@ func _NewOption(Display:String,P:String,Selec):
 	nOption["Path"]=P
 	nOption["Ref"]=Selec
 	return nOption
+
+var x:int=0
+func Get_Stat_Value(NameOfStat:String,Data:Dictionary):
+	Exchanger["Name"]=NameOfStat
+	Data["Triggers"]["Get value"]=true
+	var ret=null
+	ret=Exchanger["Value"]
+	return ret
+
+func Set_Stat_Value(NameOfStat:String,Value,Data:Dictionary):
+	Exchanger["Name"]=NameOfStat
+	Exchanger["Value"]=Value
+	Data["Triggers"]["Set value"]=true

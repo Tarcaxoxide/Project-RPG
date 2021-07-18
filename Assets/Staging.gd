@@ -27,14 +27,14 @@ func _New_Stat(Name:String,Value):
 	return nStat
 
 func _Register_Stat(Name:String,Value):
-	print(Name+" Registered.")
 	var iS:bool=false
 	for stat in Stage_Data["Stats"]:
 		if (stat["Name"] == Name):
 			iS=true
 	if(!iS):
 		Stage_Data["Stats"].append(_New_Stat(Name,Value))
-
+	print(Name+" Registered with value '"+str(Value)+"'.")
+	print("Test Get:"+str(_Get_Stat_Value(Name)))
 func _Get_Stat_Value(Name:String):
 	for stat in Stage_Data["Stats"]:
 		if (stat["Name"] == Name):
@@ -55,6 +55,15 @@ func _Get_Stat_Names():
 func P_process(delta,Terminal):
 	var termpercent:float=float(Terminal.ShowCounter/100)*float(get_viewport().size.y)
 	Terminal.set_size(Vector2(get_viewport().size.x,termpercent))
+	
+	if(Stage_Data["Current_Stage"].Data["Triggers"]["Get value"]):
+		Stage_Data["Current_Stage"].Exchanger["Value"]=_Get_Stat_Value(Stage_Data["Current_Stage"].Exchanger["Name"])
+		print("Get Value:"+Stage_Data["Current_Stage"].Exchanger["Name"]+"="+Stage_Data["Current_Stage"].Exchanger["Value"])
+		Stage_Data["Current_Stage"].Data["Triggers"]["Get value"]=false
+	elif(Stage_Data["Current_Stage"].Data["Triggers"]["Set value"]):
+		_Set_Stat(Stage_Data["Current_Stage"].Exchanger["Name"],Stage_Data["Current_Stage"].Exchanger["Value"])
+		Stage_Data["Current_Stage"].Data["Triggers"]["Set value"]=false
+	
 	if(!Terminal.ReturnDone):
 		match Terminal.CValue:
 			"Load":
@@ -69,7 +78,7 @@ func P_process(delta,Terminal):
 				Terminal.RValue.append("reload:"+LevelPath+Stage_Data["Current_Stage"].Data["Level"]["Current Scene"]+".tscn")
 				Terminal.ReturnDone=true
 			"Exit":
-				get_tree().change_scene(LevelPath+"/Menu.tscn")
+				get_tree().change_scene("res://Wrapper_Main.gd")
 				Terminal.ReturnDone=true
 			"GetStage":
 				Terminal.RValue.append(Stage_Data["Current_Stage"].Data["Level"]["Current Scene"])
@@ -85,4 +94,3 @@ func P_process(delta,Terminal):
 			if(Nscene["Real"]):
 				if(Nscene["Path"] == Stage_Data["Current_Stage"].Data["Level"]["Next Scene"]):
 					LoadLevel(Nscene["Path"])
-
