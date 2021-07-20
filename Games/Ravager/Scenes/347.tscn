@@ -1,0 +1,33 @@
+
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Selection.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Games/Ravager/Scenes/347.gd" type="Script" id=2]
+
+[node name="Level" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog_Output" type="RichTextLabel" parent="."]
+margin_right = 1024.0
+margin_bottom = 298.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "{Placeholder text}"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selection" parent="." instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 302.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+    

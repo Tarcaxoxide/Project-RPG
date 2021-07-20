@@ -28,7 +28,6 @@ func _NewOption(Display:String,P:String,Selec):
 func load_file(file):
 	var f = File.new()
 	f.open(file,File.READ)
-	var index = 1
 	var arfile:Array=[]
 	while not f.eof_reached():
 		var line = f.get_line()
@@ -38,8 +37,8 @@ func load_file(file):
 
 
 func _ready():
-	var file:Array = load_file('res://Games/Games.txt')
-	
+	var file:Array = load_file('res://Games/Games.res')
+	#var file:Array = ["Ravager"]
 	for game in file:
 		var gme="res://Games/"+game
 		if (gme != "res://Games/"):
